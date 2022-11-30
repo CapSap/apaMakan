@@ -20,6 +20,25 @@ import {
   View,
 } from 'react-native';
 
+interface Recipes {
+  recipes: Recipe[];
+}
+
+interface Recipe {
+  id: number;
+  recipeName: string;
+  recipeDescription: string;
+  recipeImage: string;
+  recipeDuration: number;
+  ingredients: Ingredient[];
+  steps: string[];
+}
+
+interface Ingredient {
+  ingredientName: string;
+  qty: number;
+}
+
 const App = () => {
   return (
     <View>

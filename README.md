@@ -1,6 +1,6 @@
 # Apa Makan (what food?)
 
-# Description:
+# Description
 
 I want to learn app developement (react-native) and work collaboratively . My partner wants a tool which assist dinner decision making. The process of developing this app will serve both of these goals.
 
@@ -8,7 +8,7 @@ I want to learn app developement (react-native) and work collaboratively . My pa
 
 iOS app that holds a few recipes. When you press a button, a recipe is chosen for you.
 
-# Bonus
+# Bonus features
 
 - Authentication / login
 - Database of recipes stored somewhere
@@ -20,6 +20,7 @@ iOS app that holds a few recipes. When you press a button, a recipe is chosen fo
 # Tech
 
 This project was inialised with npx react-native init --template react-native-template-typescript
+
 Haven't yet decided how to do the database exactly
 
 # How to run
@@ -28,7 +29,7 @@ Follow react native docs to get setup: https://reactnative.dev/docs/environment-
 
 For Linux:
 You will need Node, the React Native command line interface, a JDK, and Android Studio.
-clone repo, npm install
+clone repo and run npm install
 
 commands to start are:
 `npm run start` - this will start metro the JS bundler

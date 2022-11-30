@@ -42,7 +42,7 @@ interface Ingredient {
 const App = () => {
   return (
     <View>
-      <Text>{'App'}</Text>
+      <Text>{'hello'}</Text>
     </View>
   );
 };

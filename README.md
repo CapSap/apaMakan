@@ -39,3 +39,5 @@ To start in 2 seperate termnials run:
 
 For iOS
 (alex to do)?
+
+# What did we learn?

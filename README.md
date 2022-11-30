@@ -31,9 +31,11 @@ For Linux:
 You will need Node, the React Native command line interface, a JDK, and Android Studio.
 clone repo and run npm install
 
-commands to start are:
-`npm run start` - this will start metro the JS bundler
-`npm run android` - start the android emulator
+To start in 2 seperate termnials run:
+
+`npm run start`- this will start metro the JS bundler
+
+`npm run android` - this will start the android emulator
 
 For iOS
 (alex to do)?

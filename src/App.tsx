@@ -9,11 +9,10 @@
  * @format
  */
 
-
 import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 
-import { createStackNavigator } from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
 
 import React, {type PropsWithChildren} from 'react';
 import {
@@ -26,8 +25,8 @@ import {
   View,
 } from 'react-native';
 
-import { HomeScreen } from './components/HomeScreen';
-import { RecipeScreen } from './components/RecipeScreen';
+import {HomeScreen} from './components/HomeScreen';
+import {RecipeScreen} from './components/RecipeScreen';
 
 interface Recipes {
   recipes: Recipe[];
@@ -54,14 +53,16 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="HomeScreen" component={HomeScreen} />   
-        <Stack.Screen name="RecipeScreen" component={RecipeScreen} options={({ route }) => ({})} /> 
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen
+          name="RecipeScreen"
+          component={RecipeScreen}
+          options={({route}) => ({})}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
-
-
 
 const styles = StyleSheet.create({
   sectionContainer: {

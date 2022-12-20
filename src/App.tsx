@@ -13,6 +13,7 @@ import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 
 import {createStackNavigator} from '@react-navigation/stack';
+import {dummyData} from './dummyData';
 
 import React, {type PropsWithChildren} from 'react';
 import {

@@ -27,6 +27,7 @@ import {
 
 import {HomeScreen} from './components/HomeScreen';
 import {RecipeScreen} from './components/RecipeScreen';
+import {BottomTabsNavigator} from './components/BottomTabs.navigator';
 
 interface Recipes {
   recipes: Recipe[];
@@ -47,19 +48,10 @@ interface Ingredient {
   qty: number;
 }
 
-const Stack = createStackNavigator();
-
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="HomeScreen" component={HomeScreen} />
-        <Stack.Screen
-          name="RecipeScreen"
-          component={RecipeScreen}
-          options={({route}) => ({})}
-        />
-      </Stack.Navigator>
+      <BottomTabsNavigator />
     </NavigationContainer>
   );
 };

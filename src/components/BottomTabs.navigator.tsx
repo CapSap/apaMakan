@@ -12,7 +12,7 @@ export const BottomTabsNavigator: React.FC = () => {
     <BottomTabs.Navigator>
       <BottomTabs.Screen name="Home" component={HomeScreen} />
       <BottomTabs.Screen name="Search" component={SearchScreen} />
-      <BottomTabs.Screen name="View recipe" component={RecipeScreen} />
+      <BottomTabs.Screen name="Random" component={RecipeScreen} />
       <BottomTabs.Screen name="Profile" component={ProfileScreen} />
     </BottomTabs.Navigator>
   );

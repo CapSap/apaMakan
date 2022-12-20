@@ -5,7 +5,10 @@ import {RecipeScreen} from './RecipeScreen';
 import {dummyData} from '../dummyData';
 import {Recipe} from '../types';
 
-import type {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
+import type {
+  BottomTabScreenProps,
+  BottomTabNavigationProp,
+} from '@react-navigation/bottom-tabs';
 
 //Initialise our recipeData
 const recipeData: Recipe[] = dummyData;
@@ -18,6 +21,7 @@ type TabsParamList = {
   RecipeScreen: undefined;
 };
 
+//HomeScreen
 export type HomeProps = BottomTabScreenProps<TabsParamList, 'Home'>;
 
 const BottomTabs = createBottomTabNavigator<TabsParamList>();

@@ -51,17 +51,9 @@ interface Ingredient {
 
 const recipeData: Recipe[] = dummyData;
 
-function getRecipeByName(recipes: Recipe[], name: string): Recipe | undefined {
-  return recipes.find(item => item.recipeName === name);
-}
-
-const instantNoodles = getRecipeByName(recipeData, 'instant noodles');
-const mash = getRecipeByName(recipeData, 'mash potatoes');
-
 const App = () => {
   return (
     <NavigationContainer>
-      <Text>{JSON.stringify(mash, null, 4)}</Text>
       <BottomTabsNavigator />
     </NavigationContainer>
   );

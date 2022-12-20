@@ -29,25 +29,7 @@ import {HomeScreen} from './components/HomeScreen';
 import {RecipeScreen} from './components/RecipeScreen';
 import {BottomTabsNavigator} from './components/BottomTabs.navigator';
 import {dummyData} from './dummyData';
-
-interface Recipes {
-  recipes: Recipe[];
-}
-
-interface Recipe {
-  id: number;
-  recipeName: string;
-  recipeDescription: string;
-  recipeImage: string;
-  recipeDuration: number;
-  ingredients: Ingredient[];
-  steps: string[];
-}
-
-interface Ingredient {
-  ingredientName: string;
-  qty: number;
-}
+import {Recipe} from './types';
 
 const recipeData: Recipe[] = dummyData;
 

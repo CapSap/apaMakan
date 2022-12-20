@@ -49,6 +49,8 @@ interface Ingredient {
   qty: number;
 }
 
+const recipeData: Recipes = dummyData;
+
 const App = () => {
   return (
     <NavigationContainer>

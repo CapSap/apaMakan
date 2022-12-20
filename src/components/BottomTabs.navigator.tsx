@@ -11,7 +11,7 @@ import type {
 } from '@react-navigation/bottom-tabs';
 
 //Initialise our recipeData
-const recipeData: Recipe[] = dummyData;
+//const recipeData: Recipe[] = dummyData;
 
 //Define types for each route
 //undefined => no params
@@ -32,7 +32,7 @@ export const BottomTabsNavigator: React.FC = () => {
       <BottomTabs.Screen
         name="Home"
         component={HomeScreen}
-        initialParams={{recipeData: recipeData}}
+        initialParams={{recipeData: dummyData}}
       />
       <BottomTabs.Screen name="RecipeScreen" component={RecipeScreen} />
     </BottomTabs.Navigator>

@@ -5,9 +5,16 @@ import {RecipeScreen} from './RecipeScreen';
 import {dummyData} from '../dummyData';
 import {Recipe} from '../types';
 
+//Initialise our recipeData
 const recipeData: Recipe[] = dummyData;
 
-const BottomTabs = createBottomTabNavigator();
+//Define
+type TabsParamList = {
+  Home: {recipeData: Recipe[]};
+  RecipeScreen: undefined; //undefined => no params
+};
+
+const BottomTabs = createBottomTabNavigator<TabsParamList>();
 
 export const BottomTabsNavigator: React.FC = () => {
   return (
@@ -17,7 +24,7 @@ export const BottomTabsNavigator: React.FC = () => {
         component={HomeScreen}
         initialParams={{recipeData: recipeData}}
       />
-      <BottomTabs.Screen name="View Recipe" component={RecipeScreen} />
+      <BottomTabs.Screen name="RecipeScreen" component={RecipeScreen} />
     </BottomTabs.Navigator>
   );
 };

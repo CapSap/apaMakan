@@ -31,8 +31,6 @@ import {BottomTabsNavigator} from './components/BottomTabs.navigator';
 import {dummyData} from './dummyData';
 import {Recipe} from './types';
 
-const recipeData: Recipe[] = dummyData;
-
 const App = () => {
   return (
     <NavigationContainer>

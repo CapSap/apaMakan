@@ -5,14 +5,20 @@ import {RecipeScreen} from './RecipeScreen';
 import {dummyData} from '../dummyData';
 import {Recipe} from '../types';
 
+import type {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
+
 //Initialise our recipeData
 const recipeData: Recipe[] = dummyData;
 
-//Define
+//Define types for each route
+//undefined => no params
+//Have to use 'type' alias instead of interface according to the docs
 type TabsParamList = {
   Home: {recipeData: Recipe[]};
-  RecipeScreen: undefined; //undefined => no params
+  RecipeScreen: undefined;
 };
+
+export type HomeProps = BottomTabScreenProps<TabsParamList, 'Home'>;
 
 const BottomTabs = createBottomTabNavigator<TabsParamList>();
 

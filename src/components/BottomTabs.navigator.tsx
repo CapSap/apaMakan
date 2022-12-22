@@ -7,7 +7,7 @@ import {Recipe} from '../types';
 
 import type {
   BottomTabScreenProps,
-  BottomTabNavigationProp,
+  //BottomTabNavigationProp,
 } from '@react-navigation/bottom-tabs';
 
 //Initialise our recipeData

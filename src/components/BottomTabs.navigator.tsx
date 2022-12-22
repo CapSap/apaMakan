@@ -10,15 +10,12 @@ import type {
   //BottomTabNavigationProp,
 } from '@react-navigation/bottom-tabs';
 
-//Initialise our recipeData
-//const recipeData: Recipe[] = dummyData;
-
 //Define types for each route
 //undefined => no params
 //Have to use 'type' alias instead of interface according to the docs
 type TabsParamList = {
   Home: {data: Recipe[]};
-  RecipeScreen: undefined;
+  RecipeScreen: {data: Recipe[]};
 };
 
 //HomeScreen
@@ -34,7 +31,11 @@ export const BottomTabsNavigator: React.FC = () => {
         component={HomeScreen}
         initialParams={{data: dummyData}}
       />
-      <BottomTabs.Screen name="RecipeScreen" component={RecipeScreen} />
+      <BottomTabs.Screen
+        name="RecipeScreen"
+        component={RecipeScreen}
+        initialParams={{data: dummyData}}
+      />
     </BottomTabs.Navigator>
   );
 };

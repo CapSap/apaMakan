@@ -14,8 +14,8 @@ import type {
 //undefined => no params
 //Have to use 'type' alias instead of interface according to the docs
 type TabsParamList = {
-  Home: {data: Recipe[]};
   RecipeScreen: {data: Recipe[]};
+  Home: {data: Recipe[]};
 };
 
 //HomeScreen

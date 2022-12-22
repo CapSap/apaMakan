@@ -17,7 +17,7 @@ import type {
 //undefined => no params
 //Have to use 'type' alias instead of interface according to the docs
 type TabsParamList = {
-  Home: {recipeData: Recipe[]};
+  Home: {data: Recipe[]};
   RecipeScreen: undefined;
 };
 
@@ -32,7 +32,7 @@ export const BottomTabsNavigator: React.FC = () => {
       <BottomTabs.Screen
         name="Home"
         component={HomeScreen}
-        initialParams={{recipeData: dummyData}}
+        initialParams={{data: dummyData}}
       />
       <BottomTabs.Screen name="RecipeScreen" component={RecipeScreen} />
     </BottomTabs.Navigator>

@@ -7,7 +7,8 @@ import {Recipe} from '../types';
 
 export const HomeScreen = ({route}: HomeProps) => {
   //react navigation sets all properties of route.params to ReadOnly so need to stringify then parse the object
-  const recipeData: Recipe[] = JSON.parse(JSON.stringify(route.params));
+  const recipeData: Recipe[] = route.params.data;
+  //JSON.parse(JSON.stringify(route.params));
 
   return (
     <View>

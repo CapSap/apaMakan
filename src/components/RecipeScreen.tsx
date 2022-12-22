@@ -5,6 +5,7 @@ import {Recipe} from '../types';
 
 export const RecipeScreen = ({route}: HomeProps) => {
   const recipeData: Recipe[] = route.params.data;
+  //const testFunction = route.params.testFunction;
   return (
     <View>
       <Text>{'RecipeScreen'}</Text>

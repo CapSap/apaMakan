@@ -28,25 +28,8 @@ import {
 import {HomeScreen} from './components/HomeScreen';
 import {RecipeScreen} from './components/RecipeScreen';
 import {BottomTabsNavigator} from './components/BottomTabs.navigator';
-
-interface Recipes {
-  recipes: Recipe[];
-}
-
-interface Recipe {
-  id: number;
-  recipeName: string;
-  recipeDescription: string;
-  recipeImage: string;
-  recipeDuration: number;
-  ingredients: Ingredient[];
-  steps: string[];
-}
-
-interface Ingredient {
-  ingredientName: string;
-  qty: number;
-}
+import {dummyData} from './dummyData';
+import {Recipe} from './types';
 
 const App = () => {
   return (

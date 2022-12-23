@@ -32,6 +32,18 @@ export const ModifyRecipeScreen = () => {
     }
   };
 
+  //removeRecipe updates recipeData in AppState by removing the recipe with matching id
+  const removeRecipe = (selectedRecipeId: number) => {
+    //type guard for undefined to manage type error
+    if (!(setRecipes === undefined)) {
+      //create an array of all recipes excluding the selected recipe
+      const newRecipes: Recipe[] = recipeData
+        .slice()
+        .filter(recipe => recipe.id !== selectedRecipeId);
+      setRecipes(newRecipes);
+    }
+  };
+
   //addRecipe updates recipeData in AppState by adding the recipe with matching id
   const addRecipe = (selectedRecipeId: number) => {
     //type guard for undefined to manage type error
@@ -45,19 +57,12 @@ export const ModifyRecipeScreen = () => {
         const newRecipes: Recipe[] = [...recipeData, newRecipe];
         //update the recipes in recipeData AppState
         setRecipes(newRecipes);
+        //remove the selectedRecipe from altRecipes
+        const newAltRecipes: Recipe[] = altRecipes
+          .slice()
+          .filter(recipe => recipe.id !== selectedRecipeId);
+        setAltRecipes(newAltRecipes);
       }
-    }
-  };
-
-  //removeRecipe updates recipeData in AppState by removing the recipe with matching id
-  const removeRecipe = (selectedRecipeId: number) => {
-    //type guard for undefined to manage type error
-    if (!(setRecipes === undefined)) {
-      //create an array of all recipes excluding the selected recipe
-      const newRecipes: Recipe[] = recipeData
-        .slice()
-        .filter(recipe => recipe.id !== selectedRecipeId);
-      setRecipes(newRecipes);
     }
   };
 

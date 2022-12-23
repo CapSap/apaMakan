@@ -6,7 +6,6 @@ export const RecipeCard = ({item}: {item: Recipe}) => {
   return (
     <View style={styles.card}>
       <Text>{item.recipeName}</Text>
-      <Text>est</Text>
     </View>
   );
 };
@@ -14,9 +13,12 @@ export const RecipeCard = ({item}: {item: Recipe}) => {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: 'teal',
-    height: 100,
-    width: 100,
+    height: 150,
+    width: 150,
     border: 1,
     margin: 10,
+    borderRadius: 10,
+    fontSize: 20,
+    alignContent: 'center',
   },
 });

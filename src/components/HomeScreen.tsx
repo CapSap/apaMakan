@@ -1,12 +1,9 @@
 import React, {useState} from 'react';
 import {Text, View, ScrollView, Button} from 'react-native';
-import {HomeProps} from './BottomTabs.navigator';
 import {Recipe} from '../types';
 import {useAppContext} from '../App.provider';
 
-export const HomeScreen = ({route}: HomeProps) => {
-  //get dummyData from route.params
-  //const recipeData: Recipe[] = route.params.data;
+export const HomeScreen = () => {
   //get dummyData from useContext()
   const recipeData: Recipe[] = useAppContext().appState;
 
@@ -18,8 +15,7 @@ export const HomeScreen = ({route}: HomeProps) => {
   );
 };
 
-//Testing: DisplayRecipeData displays output of recipeData received through route.params to check contents
-//const DisplayRecipeData = (props: {recipes: Recipe[]}) => {
+//Testing: DisplayRecipeData displays output of recipeData received through useAppContext
 const DisplayRecipeData = (props: {recipes: Recipe[]}) => {
   const [showRecipes, setShowRecipes] = useState(false);
   const [buttonTitle, setButtonTitle] = useState('Press to Display RecipeData');

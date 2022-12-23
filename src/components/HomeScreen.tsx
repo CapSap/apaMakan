@@ -11,8 +11,11 @@ import {HomeProps} from './BottomTabs.navigator';
 import {Recipe} from '../types';
 import {RecipeCard} from './ReceipeCard';
 
-export const HomeScreen = ({route}: HomeProps) => {
-  const recipeData: Recipe[] = route.params.data;
+import {useAppContext} from '../App.provider';
+
+export const HomeScreen = () => {
+  //get dummyData from useContext()
+  const recipeData: Recipe[] = useAppContext().appState;
 
   return (
     <FlatList
@@ -31,3 +34,4 @@ const styles = StyleSheet.create({
     alignContent: 'center',
   },
 });
+

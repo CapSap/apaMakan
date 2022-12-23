@@ -30,12 +30,15 @@ import {RecipeScreen} from './components/RecipeScreen';
 import {BottomTabsNavigator} from './components/BottomTabs.navigator';
 import {dummyData} from './dummyData';
 import {Recipe} from './types';
+import {AppProvider} from './App.provider';
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <BottomTabsNavigator />
-    </NavigationContainer>
+    <AppProvider>
+      <NavigationContainer>
+        <BottomTabsNavigator />
+      </NavigationContainer>
+    </AppProvider>
   );
 };
 

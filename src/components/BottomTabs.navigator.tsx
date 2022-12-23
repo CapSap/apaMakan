@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {HomeScreen} from './HomeScreen';
 import {RecipeScreen} from './RecipeScreen';
 import {dummyData} from '../dummyData';
 import {Recipe} from '../types';
-import {LogBox} from 'react-native';
+import {LogBox, Text, View} from 'react-native';
 
 //ignore warning to not pass non-serializable data through params: this is safe unless we implement deep linking or state persistence
 LogBox.ignoreLogs([
@@ -17,17 +17,14 @@ import type {
 } from '@react-navigation/bottom-tabs';
 
 //Create a dummy function to see if can pass it through route.params
-export type TestFuncType = () => string;
-const testFunction: TestFuncType = () => {
-  return 'hello';
-};
+export type TestHook = (s: number) => void;
 
 //Define types for each route
 //undefined => no params
 //Have to use 'type' alias instead of interface according to the docs
 type TabsParamList = {
   RecipeScreen: {data: Recipe[]};
-  Home: {container: {data: Recipe[]; test: TestFuncType}};
+  Home: {container: {data: Recipe[]; test: TestHook; hookResult: number}};
 };
 
 //HomeScreen
@@ -36,6 +33,7 @@ export type HomeProps = BottomTabScreenProps<TabsParamList, 'Home'>;
 const BottomTabs = createBottomTabNavigator<TabsParamList>();
 
 export const BottomTabsNavigator = () => {
+  const [testHook, setTestHook] = useState<number>(0);
   return (
     <BottomTabs.Navigator>
       <BottomTabs.Screen
@@ -44,10 +42,12 @@ export const BottomTabsNavigator = () => {
         initialParams={{data: dummyData}}
       />
       <BottomTabs.Screen
-        name="RecipeScreen"
+        name={'RecipeScreen' + testHook}
         component={RecipeScreen}
         //initialParams={{data: dummyData}}
-        initialParams={{container: {data: dummyData, test: testFunction}}}
+        initialParams={{
+          container: {data: dummyData, test: setTestHook, hookResult: testHook},
+        }}
       />
     </BottomTabs.Navigator>
   );

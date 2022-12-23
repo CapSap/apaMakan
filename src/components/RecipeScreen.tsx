@@ -1,15 +1,20 @@
 import React, {useState} from 'react';
 import {Text, View, ScrollView, Button} from 'react-native';
-import {HomeProps, TestFuncType} from './BottomTabs.navigator';
+import {HomeProps, TestHook} from './BottomTabs.navigator';
 import {Recipe} from '../types';
 
 export const RecipeScreen = ({route}: HomeProps) => {
   const recipeData: Recipe[] = route.params.container.data;
   const testFunction = route.params.container.test;
+  const hookResult = route.params.container.hookResult;
   return (
     <View>
       <Text>{'RecipeScreen'}</Text>
-      <DisplayRandomRecipe recipes={recipeData} testFunction={testFunction} />
+      <DisplayRandomRecipe
+        recipes={recipeData}
+        testFunction={testFunction}
+        hookResult={hookResult}
+      />
     </View>
   );
 };
@@ -18,9 +23,10 @@ export const RecipeScreen = ({route}: HomeProps) => {
 const DisplayRandomRecipe = (props: {
   recipes: Recipe[];
   testFunction: TestFuncType;
+  hookResult: string;
 }) => {
   const [showRecipe, setShowRecipe] = useState(false);
-  const [showFunc, setShowFunc] = useState(false);
+  const [showFunc, setShowFunc] = useState(true);
   const [randomRecipe, setRandomRecipe] = useState<Recipe | undefined>();
   return (
     <ScrollView>
@@ -33,16 +39,13 @@ const DisplayRandomRecipe = (props: {
       />
       {showRecipe && <Text>{JSON.stringify(randomRecipe, null, 4)}</Text>}
       <Button
-        title={'Access testFunction() from route'}
+        title={'Iterate testHook value by 1'}
         onPress={() => {
-          setShowFunc(true);
-          setRandomRecipe(selectRandomRecipe(props.recipes));
+          props.testFunction(props.hookResult + 1);
         }}
       />
       {showFunc && (
-        <Text>
-          {'Result: ' + JSON.stringify(props.testFunction(), null, 4)}
-        </Text>
+        <Text>{'Result: ' + JSON.stringify(props.hookResult, null, 4)}</Text>
       )}
     </ScrollView>
   );

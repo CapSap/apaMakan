@@ -6,6 +6,8 @@ import {
   SafeAreaView,
   FlatList,
   ListRenderItemInfo,
+  Pressable,
+  StyleSheet,
 } from 'react-native';
 import {Recipe} from '../types';
 import {useAppContext} from '../App.provider';
@@ -42,12 +44,32 @@ export const ModifyRecipeScreen = () => {
   };
 
   return (
-    <View>
-      <Text>{'ModifyRecipeScreen'}</Text>
-      <RemoveRecipe recipes={recipeData} setRecipes={setRecipes} />
+    <View style={styles.container}>
+      <Text style={styles.heading}>{'ModifyRecipeScreen'}</Text>
+      <View style={styles.recipesList}>
+        {recipeData.map(recipe => (
+          <View>
+            <Pressable
+              onPress={() => setSelectedRecipe(recipe.id)}
+              key={recipe.id}
+              style={[
+                recipe.id === selectedRecipe
+                  ? styles.selectedRecipeItem
+                  : undefined,
+              ]}>
+              <Text style={styles.recipeText}>{recipe.recipeName}</Text>
+            </Pressable>
+          </View>
+        ))}
+      </View>
+      <Pressable style={styles.button} onPress={handleSelect}>
+        <Text style={styles.buttonText}>Remove </Text>
+      </Pressable>
     </View>
   );
 };
+
+//<RemoveRecipe recipes={recipeData} setRecipes={setRecipes} />
 
 //Props type signature
 type RemoveRecipeProps = {recipes: Recipe[]; setRecipes: SetRecipesType};
@@ -95,3 +117,65 @@ const RemovePicker = (props: {recipes: Recipe[]}) => {
     />
   );
 };
+
+const theme = {
+  colorPurple: '#454C73',
+  colorWhite: '#fff',
+};
+
+const styles = StyleSheet.create({
+  recipeText: {
+    fontSize: 24,
+  },
+  recipesList: {
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  recipeItem: {
+    width: 60,
+    height: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 30,
+    marginBottom: 5,
+  },
+  selectedRecipeItem: {
+    borderWidth: 2,
+    backgroundColor: theme.colorPurple,
+    borderColor: theme.colorWhite,
+  },
+  descriptionText: {
+    color: theme.colorPurple,
+    fontWeight: 'bold',
+    fontSize: 10,
+    textAlign: 'center',
+  },
+  container: {
+    borderWidth: 2,
+    borderColor: theme.colorPurple,
+    margin: 10,
+    borderRadius: 10,
+    padding: 20,
+  },
+  heading: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    letterSpacing: 1,
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  button: {
+    backgroundColor: theme.colorPurple,
+    width: 150,
+    borderRadius: 20,
+    marginTop: 20,
+    alignSelf: 'center',
+    padding: 10,
+  },
+  buttonText: {
+    color: theme.colorWhite,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+});

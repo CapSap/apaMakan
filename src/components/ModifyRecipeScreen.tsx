@@ -1,27 +1,31 @@
 import React, {useState, useCallback} from 'react';
-import {Text, View, Pressable, StyleSheet} from 'react-native';
+import {Text, View, Pressable, StyleSheet, ScrollView} from 'react-native';
 import {Recipe} from '../types';
 import {useAppContext} from '../App.provider';
+import {altDummyRecipes} from '../dummyData';
 
 type SetRecipesType = ((x: Recipe[]) => void) | undefined;
+//select modification mode, can either add or remove recipes
+type Mode = 'Add' | 'Remove';
 
 export const ModifyRecipeScreen = () => {
   //Get the recipe state & setState function from app context
   const recipeData: Recipe[] = useAppContext().appState;
   const setRecipes: SetRecipesType = useAppContext().setAppState;
 
-  //select modification mode, can either add or remove recipes
-  type Mode = 'Add' | 'Remove';
-  const [mode, setMode] = useState<Mode>('Remove');
+  //import newRecipes to emulate a database of recipes and store in state
+  const [altRecipes, setAltRecipes] = useState<Recipe[]>(altDummyRecipes);
+
+  const [mode, setMode] = useState<Mode>('Add');
 
   //Define the recipe ID that has been selected
   const [selectedRecipe, setSelectedRecipe] = useState<number | undefined>();
 
   //callback function that handles recipe modification
-  const handleSelect = () => {
-    //if recipe has been selected update in state & restore selectedRecipe from selected ID to undefined
+  const handleSelect = (modifyMode: Mode) => {
+    //if recipe has been selected & handleSelect() called, then update recipeData state & restore selectedRecipe from selected ID to undefined
     if (selectedRecipe) {
-      mode === 'Remove'
+      modifyMode === 'Remove'
         ? removeRecipe(selectedRecipe)
         : addRecipe(selectedRecipe);
       setSelectedRecipe(undefined);
@@ -29,7 +33,17 @@ export const ModifyRecipeScreen = () => {
   };
 
   //addRecipe updates recipeData in AppState by adding the recipe with matching id
-  const addRecipe = (selectedRecipeId: number) => {};
+  const addRecipe = (selectedRecipeId: number) => {
+    //type guard for undefined to manage type error
+    if (!(setRecipes === undefined)) {
+      //Find new recipe with matching id
+      const newRecipe: Recipe = altRecipes.find(
+        recipe => recipe.id === selectedRecipeId,
+      );
+      //Add new selected recipe to preexisting recipesData
+      const newRecipes: Recipe[] = [...recipeData, newRecipe];
+    }
+  };
 
   //removeRecipe updates recipeData in AppState by removing the recipe with matching id
   const removeRecipe = (selectedRecipeId: number) => {
@@ -44,12 +58,16 @@ export const ModifyRecipeScreen = () => {
   };
 
   return (
-    <DisplayRecipeModifier
-      recipesList={recipeData}
-      selectedRecipe={selectedRecipe}
-      setSelectedRecipe={setSelectedRecipe}
-      handleSelect={handleSelect}
-    />
+    <ScrollView>
+      <DisplayRecipeModifier
+        recipesList={altRecipes}
+        selectedRecipe={selectedRecipe}
+        setSelectedRecipe={setSelectedRecipe}
+        handleSelect={handleSelect}
+        mode={mode}
+        setMode={setMode}
+      />
+    </ScrollView>
   );
 };
 
@@ -57,7 +75,9 @@ type DisplayModifierProps = {
   recipesList: Recipe[];
   selectedRecipe?: number;
   setSelectedRecipe: (id: number | undefined) => void;
-  handleSelect: () => void;
+  handleSelect: (mode: Mode) => void;
+  mode: Mode;
+  setMode: (mode: Mode) => void;
 };
 
 const DisplayRecipeModifier: React.FC<DisplayModifierProps> = ({
@@ -65,6 +85,8 @@ const DisplayRecipeModifier: React.FC<DisplayModifierProps> = ({
   selectedRecipe,
   setSelectedRecipe,
   handleSelect,
+  mode,
+  setMode,
 }) => {
   return (
     <View style={styles.container}>
@@ -85,7 +107,9 @@ const DisplayRecipeModifier: React.FC<DisplayModifierProps> = ({
         ))}
       </View>
       <Pressable style={styles.button} onPress={handleSelect}>
-        <Text style={styles.buttonText}>Remove </Text>
+        <Text style={styles.buttonText}>
+          {mode === 'Add' ? 'Add Recipe' : 'Remove Recipe'}{' '}
+        </Text>
       </Pressable>
     </View>
   );

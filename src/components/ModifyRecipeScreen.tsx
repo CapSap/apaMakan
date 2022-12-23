@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {
   Text,
   View,
-  ScrollView,
   Button,
   SafeAreaView,
   FlatList,
@@ -11,10 +10,11 @@ import {
 import {Recipe} from '../types';
 import {useAppContext} from '../App.provider';
 
+type SetRecipesType = ((x: Recipe[]) => void) | undefined;
+
 export const ModifyRecipeScreen = () => {
   const recipeData: Recipe[] = useAppContext().appState;
-  const setRecipes: ((x: Recipe[]) => void) | undefined =
-    useAppContext().setAppState;
+  const setRecipes: SetRecipesType = useAppContext().setAppState;
   return (
     <View>
       <Text>{'ModifyRecipeScreen'}</Text>
@@ -23,10 +23,11 @@ export const ModifyRecipeScreen = () => {
   );
 };
 
-const RemoveRecipeButton = (props: {
-  recipes: Recipe[];
-  setRecipes: ((x: Recipe[]) => void) | undefined;
-}) => {
+//Props type signature
+type RemoveRecipeProps = {recipes: Recipe[]; setRecipes: SetRecipesType};
+
+//Display a button which when clicked provides user with options for removing a recipe
+const RemoveRecipeButton = (props: RemoveRecipeProps) => {
   const [displayRemoveOptions, setDisplayRemoveOptions] = useState(false);
   return (
     <SafeAreaView>

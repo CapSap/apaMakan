@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Text, View, ScrollView, Button} from 'react-native';
 import {HomeProps} from './BottomTabs.navigator';
 import {Recipe} from '../types';
+import {useAppContext} from '../App.provider';
 
 export const HomeScreen = ({route}: HomeProps) => {
   const recipeData: Recipe[] = route.params.data;
@@ -21,6 +22,7 @@ const DisplayRecipeData = (props: {recipes: Recipe[]}) => {
 
   return (
     <ScrollView>
+      <Text>Access Context: {useAppContext().msg}</Text>
       <Button
         title={buttonTitle}
         onPress={() => {

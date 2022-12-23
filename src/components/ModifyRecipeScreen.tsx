@@ -21,10 +21,15 @@ export const ModifyRecipeScreen = () => {
   const handleSelect = () => {
     //if recipe has been selected update in state & restore selectedRecipe from selected ID to undefined
     if (selectedRecipe) {
-      removeRecipe(selectedRecipe);
+      mode === 'Remove'
+        ? removeRecipe(selectedRecipe)
+        : addRecipe(selectedRecipe);
       setSelectedRecipe(undefined);
     }
   };
+
+  //addRecipe updates recipeData in AppState by adding the recipe with matching id
+  const addRecipe = (selectedRecipeId: number) => {};
 
   //removeRecipe updates recipeData in AppState by removing the recipe with matching id
   const removeRecipe = (selectedRecipeId: number) => {
@@ -61,6 +66,13 @@ export const ModifyRecipeScreen = () => {
       </Pressable>
     </View>
   );
+};
+
+//necessary Props are recipeData, selectedRecipe, setSelectedRecipe
+type DisplayRecipesModifier = {
+  recipesList: Recipe[];
+  selectedRecipe: number;
+  setSelectedRecipe: number;
 };
 
 const theme = {

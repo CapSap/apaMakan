@@ -69,55 +69,6 @@ export const ModifyRecipeScreen = () => {
   );
 };
 
-//<RemoveRecipe recipes={recipeData} setRecipes={setRecipes} />
-
-//Props type signature
-type RemoveRecipeProps = {recipes: Recipe[]; setRecipes: SetRecipesType};
-
-//Display all recipe titles and remove selected recipe
-const RemoveRecipe: React.FC<RemoveRecipeProps> = (
-  props: RemoveRecipeProps,
-) => {
-  return (
-    <SafeAreaView>
-      <Text>'Select a recipe to remove'</Text>
-    </SafeAreaView>
-  );
-};
-
-//Display a button which when clicked provides user with options for removing a recipe
-const RemoveFirstRecipeButton = (props: RemoveRecipeProps) => {
-  return (
-    <SafeAreaView>
-      <Button
-        title={'Remove First Recipe'}
-        onPress={() => {
-          //Destructure tail of recipes
-          const [, ...xs] = props.recipes.slice();
-          //Type check setRecipes function isn't undefined
-          if (!(props.setRecipes === undefined)) {
-            //remove first recipe from recipes
-            props.setRecipes([...xs]);
-          }
-        }}
-      />
-      <RemovePicker recipes={props.recipes} />
-    </SafeAreaView>
-  );
-};
-
-const RemovePicker = (props: {recipes: Recipe[]}) => {
-  return (
-    <FlatList
-      data={props.recipes}
-      renderItem={({item}: ListRenderItemInfo<Recipe>) => (
-        <Text>{JSON.stringify(item)}</Text>
-      )}
-      keyExtractor={(item: Recipe) => item.id}
-    />
-  );
-};
-
 const theme = {
   colorPurple: '#454C73',
   colorWhite: '#fff',

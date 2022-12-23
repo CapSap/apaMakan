@@ -19,13 +19,16 @@ export const HomeScreen = ({route}: HomeProps) => {
       style={styles.container}
       data={recipeData}
       renderItem={RecipeCard}
-      keyExtractor={item => item.id}
+      keyExtractor={item => item.recipeName + item.id}
     />
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     flexDirection: 'row',
+    flexWrap: 'wrap',
+    width: 300,
   },
 });

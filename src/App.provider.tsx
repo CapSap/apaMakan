@@ -5,10 +5,11 @@ type AppContextType = {
   msg: string;
 };
 
-const defaultValue = {msg: 'initialMsgValue'};
+const defaultValue = {msg: ''};
 
 const AppContext = React.createContext<AppContextType>(defaultValue);
 
+//Create a context provider
 export const AppProvider: React.FC = ({children}) => {
   return (
     <AppContext.Provider value={{msg: 'newMsgValue'}}>

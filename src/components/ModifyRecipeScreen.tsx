@@ -34,13 +34,12 @@ const RemoveRecipeButton = (props: RemoveRecipeProps) => {
       <Button
         title={'Remove Recipe'}
         onPress={() => {
+          //Display Recipe names to pick which to remove
           setDisplayRemoveOptions(true);
-          if (props.recipes !== undefined) {
-            const [, ...xs] = props.recipes.slice();
-            if (xs == !'undefined') {
-              props.setRecipes([xs]);
-            }
-          }
+          //Destructure tail of recipes
+          const [, ...xs] = props.recipes.slice();
+          //remove first recipe from recipes
+          props.setRecipes([xs]);
         }}
       />
       {displayRemoveOptions && <RemovePicker recipes={props.recipes} />}
@@ -59,3 +58,27 @@ const RemovePicker = (props: {recipes: Recipe[]}) => {
     />
   );
 };
+
+/*
+//Display a button which when clicked provides user with options for removing a recipe
+const RemoveRecipeButtonOld = (props: RemoveRecipeProps) => {
+  const [displayRemoveOptions, setDisplayRemoveOptions] = useState(false);
+  return (
+    <SafeAreaView>
+      <Button
+        title={'Remove Recipe'}
+        onPress={() => {
+          setDisplayRemoveOptions(true);
+          if (props.recipes !== undefined) {
+            const [, ...xs] = props.recipes.slice();
+            if (xs == !'undefined') {
+              props.setRecipes([xs]);
+            }
+          }
+        }}
+      />
+      {displayRemoveOptions && <RemovePicker recipes={props.recipes} />}
+    </SafeAreaView>
+  );
+};
+*/

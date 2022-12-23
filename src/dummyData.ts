@@ -68,6 +68,7 @@ export const dummyData = [
   },
 ];
 
+//I just copied these from dummyRecipes and changed the recipeName & id
 export const altDummyRecipes = [
   {
     id: 4,

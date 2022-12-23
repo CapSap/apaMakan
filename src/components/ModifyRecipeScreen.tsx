@@ -16,6 +16,7 @@ export const ModifyRecipeScreen = () => {
   //import newRecipes to emulate a database of recipes and store in state
   const [altRecipes, setAltRecipes] = useState<Recipe[]>(altDummyRecipes);
 
+  //mode will determine what modification will be applied to the selected recipe, what recipes will be displayed
   const [mode, setMode] = useState<Mode>('Add');
 
   //Define the recipe ID that has been selected
@@ -23,7 +24,7 @@ export const ModifyRecipeScreen = () => {
 
   //callback function that handles recipe modification
   const handleSelect = (modifyMode: Mode) => {
-    //if recipe has been selected & handleSelect() called, then update recipeData state & restore selectedRecipe from selected ID to undefined
+    //if recipe has been selected & handleSelect() called, then update state & restore selectedRecipe from selected ID to undefined
     if (selectedRecipe) {
       modifyMode === 'Remove'
         ? removeRecipe(selectedRecipe)
@@ -34,9 +35,9 @@ export const ModifyRecipeScreen = () => {
 
   //removeRecipe updates recipeData in AppState by removing the recipe with matching id
   const removeRecipe = (selectedRecipeId: number) => {
-    //type guard for undefined to manage type error
+    //type guard for undefined (nothing selected)
     if (!(setRecipes === undefined)) {
-      //create an array of all recipes excluding the selected recipe
+      //create an array of all recipes excluding the selected recipe and update in appState
       const newRecipes: Recipe[] = recipeData
         .slice()
         .filter(recipe => recipe.id !== selectedRecipeId);
@@ -44,9 +45,9 @@ export const ModifyRecipeScreen = () => {
     }
   };
 
-  //addRecipe updates recipeData in AppState by adding the recipe with matching id
+  //addRecipe updates recipeData in AppState by adding the recipe with matching id and removes it from altRecipes in local state
   const addRecipe = (selectedRecipeId: number) => {
-    //type guard for undefined to manage type error
+    //type guard for undefined (nothing selected)
     if (setRecipes !== undefined) {
       //Find new recipe with matching id
       const newRecipe: Recipe | undefined = altRecipes.find(
@@ -68,6 +69,7 @@ export const ModifyRecipeScreen = () => {
 
   return (
     <ScrollView>
+      <Text>{testEdge}</Text>
       <DisplayRecipeModifier
         recipesList={mode === 'Add' ? altRecipes : recipeData}
         selectedRecipe={selectedRecipe}

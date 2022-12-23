@@ -1,6 +1,8 @@
-import React, {useState} from 'react';
-import {Text, View, ScrollView, Button} from 'react-native';
+import React from 'react';
+import {View, FlatList, StyleSheet} from 'react-native';
 import {Recipe} from '../types';
+import {RecipeCard} from './ReceipeCard';
+
 import {useAppContext} from '../App.provider';
 
 export const HomeScreen = () => {
@@ -8,28 +10,24 @@ export const HomeScreen = () => {
   const recipeData: Recipe[] = useAppContext().appState;
 
   return (
-    <View>
-      <Text>{'HomeScreen'}</Text>
-      <DisplayRecipeData recipes={recipeData} />
+    <View style={styles.container}>
+      <FlatList
+        contentContainerStyle={styles.list}
+        data={recipeData}
+        renderItem={RecipeCard}
+        keyExtractor={(item, index) => item.recipeName + item.id + index}
+        numColumns={2}
+      />
     </View>
   );
 };
 
-//Testing: DisplayRecipeData displays output of recipeData received through useAppContext
-const DisplayRecipeData = (props: {recipes: Recipe[]}) => {
-  const [showRecipes, setShowRecipes] = useState(false);
-  const [buttonTitle, setButtonTitle] = useState('Press to Display RecipeData');
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+  },
 
-  return (
-    <ScrollView>
-      <Button
-        title={buttonTitle}
-        onPress={() => {
-          setShowRecipes(current => !current);
-          setButtonTitle('Press to Hide RecipeData');
-        }}
-      />
-      {showRecipes && <Text>{JSON.stringify(props.recipes, null, 4)}</Text>}
-    </ScrollView>
-  );
-};
+  list: {
+    alignContent: 'space-around',
+  },
+});

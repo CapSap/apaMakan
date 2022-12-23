@@ -17,7 +17,7 @@ import type {
 } from '@react-navigation/bottom-tabs';
 
 //Create a dummy function to see if can pass it through route.params
-type TestFuncType = () => string;
+export type TestFuncType = () => string;
 const testFunction: TestFuncType = () => {
   return 'hello';
 };
@@ -26,8 +26,8 @@ const testFunction: TestFuncType = () => {
 //undefined => no params
 //Have to use 'type' alias instead of interface according to the docs
 type TabsParamList = {
-  RecipeScreen: {container: {data: Recipe[]; test: TestFuncType}};
-  Home: {data: Recipe[]};
+  RecipeScreen: {data: Recipe[]};
+  Home: {container: {data: Recipe[]; test: TestFuncType}};
 };
 
 //HomeScreen
@@ -35,7 +35,7 @@ export type HomeProps = BottomTabScreenProps<TabsParamList, 'Home'>;
 
 const BottomTabs = createBottomTabNavigator<TabsParamList>();
 
-export const BottomTabsNavigator: React.FC = () => {
+export const BottomTabsNavigator = () => {
   return (
     <BottomTabs.Navigator>
       <BottomTabs.Screen
@@ -46,8 +46,8 @@ export const BottomTabsNavigator: React.FC = () => {
       <BottomTabs.Screen
         name="RecipeScreen"
         component={RecipeScreen}
-        initialParams={{data: dummyData}}
-        //initialParams={{container: {data: dummyData, test: testFunction}}}
+        //initialParams={{data: dummyData}}
+        initialParams={{container: {data: dummyData, test: testFunction}}}
       />
     </BottomTabs.Navigator>
   );

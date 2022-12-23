@@ -68,11 +68,42 @@ export const ModifyRecipeScreen = () => {
   );
 };
 
-//necessary Props are recipeData, selectedRecipe, setSelectedRecipe
-type DisplayRecipesModifier = {
+type DisplayModifierProps = {
   recipesList: Recipe[];
   selectedRecipe: number;
-  setSelectedRecipe: number;
+  setSelectedRecipe: (id: number) => void;
+  handleSelect: () => void;
+};
+
+const DisplayRecipeModifier: React.FC<DisplayModifierProps> = ({
+  recipesList,
+  selectedRecipe,
+  setSelectedRecipe,
+  handleSelect,
+}) => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.heading}>{'ModifyRecipeScreen'}</Text>
+      <View style={styles.recipesList}>
+        {recipesList.map(recipe => (
+          <View key={recipe.id}>
+            <Pressable
+              onPress={() => setSelectedRecipe(recipe.id)}
+              style={[
+                recipe.id === selectedRecipe
+                  ? styles.selectedRecipeItem
+                  : undefined,
+              ]}>
+              <Text style={styles.recipeText}>{recipe.recipeName}</Text>
+            </Pressable>
+          </View>
+        ))}
+      </View>
+      <Pressable style={styles.button} onPress={handleSelect}>
+        <Text style={styles.buttonText}>Remove </Text>
+      </Pressable>
+    </View>
+  );
 };
 
 const theme = {

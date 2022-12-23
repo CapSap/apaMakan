@@ -1,14 +1,5 @@
 import React, {useState, useCallback} from 'react';
-import {
-  Text,
-  View,
-  Button,
-  SafeAreaView,
-  FlatList,
-  ListRenderItemInfo,
-  Pressable,
-  StyleSheet,
-} from 'react-native';
+import {Text, View, Pressable, StyleSheet} from 'react-native';
 import {Recipe} from '../types';
 import {useAppContext} from '../App.provider';
 
@@ -48,10 +39,9 @@ export const ModifyRecipeScreen = () => {
       <Text style={styles.heading}>{'ModifyRecipeScreen'}</Text>
       <View style={styles.recipesList}>
         {recipeData.map(recipe => (
-          <View>
+          <View key={recipe.id}>
             <Pressable
               onPress={() => setSelectedRecipe(recipe.id)}
-              key={recipe.id}
               style={[
                 recipe.id === selectedRecipe
                   ? styles.selectedRecipeItem

@@ -5,7 +5,9 @@ import {Recipe} from '../types';
 export const RecipeCard = ({item}: {item: Recipe}) => {
   return (
     <View style={styles.card}>
-      <Text>{item.recipeName}</Text>
+      <Text style={styles.time}>{item.recipeDuration}m</Text>
+      <Text style={styles.image}>{item.recipeImage}</Text>
+      <Text style={styles.title}>{item.recipeName}</Text>
     </View>
   );
 };
@@ -19,6 +21,21 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 10,
     fontSize: 20,
-    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  time: {
+    alignSelf: 'flex-start',
+    margin: 5,
+    padding: 2,
+    width: 35,
+  },
+  image: {
+    fontSize: 30,
+  },
+  title: {
+    fontSize: 20,
+    padding: 2,
+    paddingBottom: 25,
   },
 });

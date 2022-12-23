@@ -44,34 +44,19 @@ export const ModifyRecipeScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.heading}>{'ModifyRecipeScreen'}</Text>
-      <View style={styles.recipesList}>
-        {recipeData.map(recipe => (
-          <View key={recipe.id}>
-            <Pressable
-              onPress={() => setSelectedRecipe(recipe.id)}
-              style={[
-                recipe.id === selectedRecipe
-                  ? styles.selectedRecipeItem
-                  : undefined,
-              ]}>
-              <Text style={styles.recipeText}>{recipe.recipeName}</Text>
-            </Pressable>
-          </View>
-        ))}
-      </View>
-      <Pressable style={styles.button} onPress={handleSelect}>
-        <Text style={styles.buttonText}>Remove </Text>
-      </Pressable>
-    </View>
+    <DisplayRecipeModifier
+      recipesList={recipeData}
+      selectedRecipe={selectedRecipe}
+      setSelectedRecipe={setSelectedRecipe}
+      handleSelect={handleSelect}
+    />
   );
 };
 
 type DisplayModifierProps = {
   recipesList: Recipe[];
-  selectedRecipe: number;
-  setSelectedRecipe: (id: number) => void;
+  selectedRecipe?: number;
+  setSelectedRecipe: (id: number | undefined) => void;
   handleSelect: () => void;
 };
 

@@ -3,12 +3,13 @@ import {dummyData} from './dummyData';
 import {Recipe} from './types';
 
 type AppContextType = {
-  data: Recipe[];
+  appState: Recipe[];
+  setAppState?: (x: Recipe[]) => void;
 };
 
-const initialRecipes = {data: dummyData};
+const initialAppState = {appState: dummyData};
 
-const AppContext = React.createContext<AppContextType>(initialRecipes);
+const AppContext = React.createContext<AppContextType>(initialAppState);
 
 //Create a context provider
 export const AppProvider: React.FC = ({children}) => {
@@ -16,7 +17,8 @@ export const AppProvider: React.FC = ({children}) => {
   const [recipesState, setRecipesState] = React.useState<Recipe[]>(dummyData);
 
   return (
-    <AppContext.Provider value={{data: recipesState}}>
+    <AppContext.Provider
+      value={{appState: recipesState, setAppState: setRecipesState}}>
       {children}
     </AppContext.Provider>
   );

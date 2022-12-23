@@ -7,7 +7,7 @@ import {useAppContext} from '../App.provider';
 export const RecipeScreen = ({route}: HomeProps) => {
   //const recipeData: Recipe[] = route.params.data;
   //get dummyData from useAppContext
-  const recipeData: Recipe[] = useAppContext().data;
+  const recipeData: Recipe[] = useAppContext().appState;
   return (
     <View>
       <Text>{'RecipeScreen'}</Text>

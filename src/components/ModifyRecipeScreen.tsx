@@ -18,7 +18,7 @@ export const ModifyRecipeScreen = () => {
   return (
     <View>
       <Text>{'ModifyRecipeScreen'}</Text>
-      <RemoveRecipeButton recipes={recipeData} setRecipes={setRecipes} />
+      <RemoveFirstRecipeButton recipes={recipeData} setRecipes={setRecipes} />
     </View>
   );
 };
@@ -27,22 +27,19 @@ export const ModifyRecipeScreen = () => {
 type RemoveRecipeProps = {recipes: Recipe[]; setRecipes: SetRecipesType};
 
 //Display a button which when clicked provides user with options for removing a recipe
-const RemoveRecipeButton = (props: RemoveRecipeProps) => {
-  const [displayRemoveOptions, setDisplayRemoveOptions] = useState(false);
+const RemoveFirstRecipeButton = (props: RemoveRecipeProps) => {
   return (
     <SafeAreaView>
       <Button
-        title={'Remove Recipe'}
+        title={'Remove First Recipe'}
         onPress={() => {
-          //Display Recipe names to pick which to remove
-          setDisplayRemoveOptions(true);
           //Destructure tail of recipes
           const [, ...xs] = props.recipes.slice();
           //remove first recipe from recipes
-          props.setRecipes([xs]);
+          props.setRecipes([...xs]);
         }}
       />
-      {displayRemoveOptions && <RemovePicker recipes={props.recipes} />}
+      <RemovePicker recipes={props.recipes} />
     </SafeAreaView>
   );
 };

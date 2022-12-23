@@ -14,8 +14,9 @@ export const RecipeCard = ({item}: {item: Recipe}) => {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: 'teal',
-    height: 50,
-    width: 50,
+    height: 100,
+    width: 100,
     border: 1,
+    margin: 10,
   },
 });

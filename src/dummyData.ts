@@ -3,7 +3,7 @@ export const dummyData = [
     id: 1,
     recipeName: 'instant noodles',
     recipeDescription: 'a staple food among young people everywhere',
-    recipeImage: '???',
+    recipeImage: '🍜',
     recipeDuration: 5,
     ingredients: [
       {
@@ -27,7 +27,7 @@ export const dummyData = [
     id: 2,
     recipeName: 'mash potatoes',
     recipeDescription: 'mash potatoes mash potatoes potatoes potatoes potatoes',
-    recipeImage: '???',
+    recipeImage: '🥔',
     recipeDuration: 10,
     ingredients: [
       {
@@ -46,7 +46,7 @@ export const dummyData = [
     id: 3,
     recipeName: 'steak',
     recipeDescription: 'simple steak',
-    recipeImage: '???',
+    recipeImage: '🥩',
     recipeDuration: 15,
     ingredients: [
       {

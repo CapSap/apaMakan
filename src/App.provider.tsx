@@ -12,7 +12,7 @@ const initialAppState = {appState: dummyData};
 const AppContext = React.createContext<AppContextType>(initialAppState);
 
 //Create a context provider
-export const AppProvider: React.FC = ({children}) => {
+export const AppProvider: React.FC<ProviderProps> = ({children}) => {
   //store dummyData in state
   const [recipesState, setRecipesState] = React.useState<Recipe[]>(dummyData);
 
@@ -26,3 +26,8 @@ export const AppProvider: React.FC = ({children}) => {
 
 //useAppContext can be used to access AppContext in all components wrapped inside of ContextProvider
 export const useAppContext = () => React.useContext(AppContext);
+
+//Need to define this explicity in newer versions of react or get error
+interface ProviderProps {
+  children: React.ReactNode;
+}

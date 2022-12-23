@@ -35,13 +35,17 @@ export const ModifyRecipeScreen = () => {
   //addRecipe updates recipeData in AppState by adding the recipe with matching id
   const addRecipe = (selectedRecipeId: number) => {
     //type guard for undefined to manage type error
-    if (!(setRecipes === undefined)) {
+    if (setRecipes !== undefined) {
       //Find new recipe with matching id
-      const newRecipe: Recipe = altRecipes.find(
+      const newRecipe: Recipe | undefined = altRecipes.find(
         recipe => recipe.id === selectedRecipeId,
       );
-      //Add new selected recipe to preexisting recipesData
-      const newRecipes: Recipe[] = [...recipeData, newRecipe];
+      if (newRecipe !== undefined) {
+        //Add new selected recipe to preexisting recipesData
+        const newRecipes: Recipe[] = [...recipeData, newRecipe];
+        //update the recipes in recipeData AppState
+        setRecipes(newRecipes);
+      }
     }
   };
 
@@ -88,11 +92,14 @@ const DisplayRecipeModifier: React.FC<DisplayModifierProps> = ({
   mode,
   setMode,
 }) => {
+  //Just get the opposite Mode
   const handleToggleMode = () => setMode(mode === 'Add' ? 'Remove' : 'Add');
+  //handler for submitting modification
+  const handleMod = () => handleSelect(mode);
   return (
     <View style={styles.container}>
       <Pressable style={styles.button} onPress={handleToggleMode}>
-        <Text>Toggle Mode:</Text>
+        <Text style={styles.buttonText}>Toggle Mode:</Text>
       </Pressable>
       <Text style={styles.heading}>{'ModifyRecipeScreen'}</Text>
       <View style={styles.recipesList}>
@@ -110,7 +117,7 @@ const DisplayRecipeModifier: React.FC<DisplayModifierProps> = ({
           </View>
         ))}
       </View>
-      <Pressable style={styles.button} onPress={handleSelect}>
+      <Pressable style={styles.button} onPress={handleMod}>
         <Text style={styles.buttonText}>
           {mode === 'Add' ? 'Add Recipe' : 'Remove Recipe'}{' '}
         </Text>

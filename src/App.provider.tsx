@@ -17,3 +17,6 @@ export const AppProvider: React.FC = ({children}) => {
     </AppContext.Provider>
   );
 };
+
+//useAppContext can be used to access AppContext in all components wrapped inside of ContextProvider
+export const useAppContext = () => React.useContext(AppContext);

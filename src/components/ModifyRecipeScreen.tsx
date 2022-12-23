@@ -60,7 +60,7 @@ export const ModifyRecipeScreen = () => {
   return (
     <ScrollView>
       <DisplayRecipeModifier
-        recipesList={altRecipes}
+        recipesList={mode === 'Add' ? altRecipes : recipeData}
         selectedRecipe={selectedRecipe}
         setSelectedRecipe={setSelectedRecipe}
         handleSelect={handleSelect}
@@ -88,8 +88,12 @@ const DisplayRecipeModifier: React.FC<DisplayModifierProps> = ({
   mode,
   setMode,
 }) => {
+  const handleToggleMode = () => setMode(mode === 'Add' ? 'Remove' : 'Add');
   return (
     <View style={styles.container}>
+      <Pressable style={styles.button} onPress={handleToggleMode}>
+        <Text>Toggle Mode:</Text>
+      </Pressable>
       <Text style={styles.heading}>{'ModifyRecipeScreen'}</Text>
       <View style={styles.recipesList}>
         {recipesList.map(recipe => (

@@ -10,6 +10,10 @@ export const ModifyRecipeScreen = () => {
   const recipeData: Recipe[] = useAppContext().appState;
   const setRecipes: SetRecipesType = useAppContext().setAppState;
 
+  //select modification mode, can either add or remove recipes
+  type Mode = 'Add' | 'Remove';
+  const [mode, setMode] = useState<Mode>('Remove');
+
   //Define the recipe ID that has been selected
   const [selectedRecipe, setSelectedRecipe] = useState<number | undefined>();
 

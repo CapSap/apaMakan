@@ -1,14 +1,20 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import {Recipe} from '../types';
 
 export const RecipeCard = ({item}: {item: Recipe}) => {
+  const onPress = () => {
+    console.log(item);
+    console.log(navigation);
+  };
+
   return (
-    <View style={styles.card}>
+    <TouchableOpacity onPress={onPress} style={styles.card}>
       <Text style={styles.time}>{item.recipeDuration}m</Text>
       <Text style={styles.image}>{item.recipeImage}</Text>
       <Text style={styles.title}>{item.recipeName}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

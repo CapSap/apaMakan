@@ -12,7 +12,7 @@ export const HomeScreen = () => {
   //get dummyData from useContext()
   const recipeData: Recipe[] = useAppContext().appState;
 
-  const Tab = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator();
 
   const List = () => {
     return (
@@ -29,10 +29,10 @@ export const HomeScreen = () => {
   };
 
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={List} />
-      <Tab.Screen name="Detail" component={RecipeDetail} />
-    </Tab.Navigator>
+    <Stack.Navigator>
+      <Stack.Screen name="Recipes" component={List} />
+      <Stack.Screen name="Detail" component={RecipeDetail} />
+    </Stack.Navigator>
   );
 };
 

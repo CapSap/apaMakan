@@ -14,7 +14,7 @@ export const HomeScreen = () => {
 
   const Stack = createNativeStackNavigator();
 
-  const List = () => {
+  const RecipeList = () => {
     return (
       <View style={styles.container}>
         <FlatList
@@ -30,7 +30,7 @@ export const HomeScreen = () => {
 
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Recipes" component={List} />
+      <Stack.Screen name="Recipes" component={RecipeList} />
       <Stack.Screen name="Detail" component={RecipeDetail} />
     </Stack.Navigator>
   );

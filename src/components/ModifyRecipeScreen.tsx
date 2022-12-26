@@ -105,7 +105,10 @@ const DisplayRecipeModifier: React.FC<DisplayModifierProps> = ({
   return (
     <View style={styles.container}>
       <Pressable style={styles.button} onPress={handleToggleMode}>
-        <Text style={styles.buttonText}>Toggle Mode:</Text>
+        <Text style={styles.buttonText}>Add Recipes</Text>
+      </Pressable>
+      <Pressable style={styles.button} onPress={handleToggleMode}>
+        <Text style={styles.buttonText}>Remove Recipes</Text>
       </Pressable>
       <Text style={styles.heading}>{'ModifyRecipeScreen'}</Text>
       <View style={styles.recipesList}>

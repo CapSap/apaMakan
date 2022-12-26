@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState} from 'react';
 import {Text, View, Pressable, StyleSheet, ScrollView} from 'react-native';
 import {Recipe} from '../types';
 import {useAppContext} from '../App.provider';
@@ -69,7 +69,6 @@ export const ModifyRecipeScreen = () => {
 
   return (
     <ScrollView>
-      <Text>{testEdge}</Text>
       <DisplayRecipeModifier
         recipesList={mode === 'Add' ? altRecipes : recipeData}
         selectedRecipe={selectedRecipe}

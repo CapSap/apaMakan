@@ -18,7 +18,7 @@ interface Ingredient {
 // types for HomeScreen navigator
 export type StackNavParams = {
   Recipes: undefined;
-  Detail: {item: Recipe};
+  Detail: {recipe: Recipe};
 };
 // type for paramater passed to ReceipeList ie {navigation}
 export type RecipeListNavProps = NativeStackScreenProps<

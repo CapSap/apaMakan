@@ -20,7 +20,7 @@ export const HomeScreen = () => {
           data={recipeData}
           renderItem={({item}: {item: Recipe}) => {
             const onPress = () => {
-              navigation.navigate('Detail', {item});
+              navigation.navigate('Detail', {recipe: item});
             };
 
             return (

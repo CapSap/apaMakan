@@ -1,10 +1,12 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-export const RecipeDetail = () => {
+export const RecipeDetail = ({route}) => {
+  const {item} = route.params;
+  console.log(item);
   return (
     <View>
-      <Text>detail</Text>
+      <Text>{item.recipeName}</Text>
     </View>
   );
 };

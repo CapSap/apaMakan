@@ -104,13 +104,24 @@ const DisplayRecipeModifier: React.FC<DisplayModifierProps> = ({
   const handleMod = () => handleSelect(mode);
   return (
     <View style={styles.container}>
-      <Pressable style={styles.button} onPress={handleToggleMode}>
-        <Text style={styles.buttonText}>Add Recipes</Text>
-      </Pressable>
-      <Pressable style={styles.button} onPress={handleToggleMode}>
-        <Text style={styles.buttonText}>Remove Recipes</Text>
-      </Pressable>
-      <Text style={styles.heading}>{'ModifyRecipeScreen'}</Text>
+      <View style={styles.modeSet}>
+        <Pressable
+          style={[
+            styles.modeButton,
+            mode === 'Add' ? styles.selectedMode : undefined,
+          ]}
+          onPress={handleToggleMode}>
+          <Text style={styles.modeText}>Add Recipes</Text>
+        </Pressable>
+        <Pressable
+          style={[
+            styles.modeButton,
+            mode === 'Remove' ? styles.selectedMode : undefined,
+          ]}
+          onPress={handleToggleMode}>
+          <Text style={styles.modeText}>Remove Recipes</Text>
+        </Pressable>
+      </View>
       <View style={styles.recipesList}>
         {recipesList.map(recipe => (
           <View key={recipe.id}>
@@ -192,6 +203,27 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: theme.colorWhite,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  modeSet: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingBottom: 30,
+  },
+  modeButton: {
+    backgroundColor: theme.colorWhite,
+    width: 150,
+    borderRadius: 20,
+    marginTop: 20,
+    alignSelf: 'center',
+    padding: 10,
+  },
+  selectedMode: {
+    backgroundColor: 'grey',
+  },
+  modeText: {
+    color: 'black',
     textAlign: 'center',
     fontWeight: 'bold',
   },

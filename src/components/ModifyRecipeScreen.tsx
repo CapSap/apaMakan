@@ -13,11 +13,11 @@ export const ModifyRecipeScreen = () => {
   const recipeData: Recipe[] = useAppContext().appState;
   const setRecipes: SetRecipesType = useAppContext().setAppState;
 
-  //import newRecipes to emulate a database of recipes and store in state
-  const [altRecipes, setAltRecipes] = useState<Recipe[]>(altDummyRecipes);
-
   //mode will determine what modification will be applied to the selected recipe, what recipes will be displayed
   const [mode, setMode] = useState<Mode>('Add');
+
+  //import newRecipes to emulate a database of recipes and store in state
+  const [altRecipes, setAltRecipes] = useState<Recipe[]>(altDummyRecipes);
 
   //Define the recipe ID that has been selected
   const [selectedRecipe, setSelectedRecipe] = useState<number | undefined>();
@@ -38,10 +38,7 @@ export const ModifyRecipeScreen = () => {
     //type guard for undefined (nothing selected)
     if (!(setRecipes === undefined)) {
       //create an array of all recipes excluding the selected recipe and update in appState
-      const newRecipes: Recipe[] = recipeData
-        .slice()
-        .filter(recipe => recipe.id !== selectedRecipeId);
-      setRecipes(newRecipes);
+      setRecipes(removeRecipeById(recipeData, selectedRecipeId));
     }
   };
 
@@ -59,12 +56,18 @@ export const ModifyRecipeScreen = () => {
         //update the recipes in recipeData AppState
         setRecipes(newRecipes);
         //remove the selectedRecipe from altRecipes
-        const newAltRecipes: Recipe[] = altRecipes
-          .slice()
-          .filter(recipe => recipe.id !== selectedRecipeId);
-        setAltRecipes(newAltRecipes);
+        setAltRecipes(removeRecipeById(altRecipes, selectedRecipeId));
       }
     }
+  };
+
+  //removeRecipeById takes a recipes array & recipeId
+  //It returns a clone of the recipes array with the recipe with matching id removed
+  const removeRecipeById = (recipes: Recipe[], recipeId: number) => {
+    const newRecipes: Recipe[] = recipes
+      .slice()
+      .filter(recipe => recipe.id !== recipeId);
+    return newRecipes;
   };
 
   return (

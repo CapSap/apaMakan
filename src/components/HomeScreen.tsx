@@ -1,9 +1,8 @@
 import React from 'react';
 import {View, FlatList, StyleSheet, TouchableOpacity, Text} from 'react-native';
-import {Recipe} from '../types';
+import {Recipe, RecipeListNavProps, StackNavParams} from '../types';
 // import {RecipeCard} from './ReceipeCard';
 import {useAppContext} from '../App.provider';
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {RecipeDetail} from './RecipeDetail';
 
@@ -13,7 +12,7 @@ export const HomeScreen = () => {
 
   const Stack = createNativeStackNavigator<StackNavParams>();
 
-  const RecipeList = ({navigation}: NavProps) => {
+  const RecipeList = ({navigation}: RecipeListNavProps) => {
     return (
       <View style={styles.container}>
         <FlatList
@@ -46,13 +45,6 @@ export const HomeScreen = () => {
     </Stack.Navigator>
   );
 };
-
-type StackNavParams = {
-  Recipes: undefined;
-  Detail: {item: Recipe};
-};
-
-type NavProps = NativeStackScreenProps<StackNavParams, 'Recipes'>;
 
 const styles = StyleSheet.create({
   container: {

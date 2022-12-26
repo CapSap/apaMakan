@@ -1,8 +1,16 @@
 import React, {useState} from 'react';
-import {Text, View, Pressable, StyleSheet, ScrollView} from 'react-native';
+import {
+  Text,
+  View,
+  Pressable,
+  StyleSheet,
+  ScrollView,
+  Image,
+} from 'react-native';
 import {Recipe} from '../types';
 import {useAppContext} from '../App.provider';
 import {altDummyRecipes} from '../dummyData';
+import {GetImage} from './GetImage';
 
 type SetRecipesType = ((x: Recipe[]) => void) | undefined;
 //select modification mode, can either add or remove recipes
@@ -72,6 +80,13 @@ export const ModifyRecipeScreen = () => {
 
   return (
     <ScrollView>
+      {recipeData.map(recipe => (
+        <GetImage key={recipe.id} imgName={recipe.recipeImage} />
+      ))}
+    </ScrollView>
+  );
+};
+/*
       <DisplayRecipeModifier
         recipesList={mode === 'Add' ? altRecipes : recipeData}
         selectedRecipe={selectedRecipe}
@@ -80,9 +95,7 @@ export const ModifyRecipeScreen = () => {
         mode={mode}
         setMode={setMode}
       />
-    </ScrollView>
-  );
-};
+*/
 
 type DisplayModifierProps = {
   recipesList: Recipe[];

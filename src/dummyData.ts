@@ -3,7 +3,7 @@ export const dummyData = [
     id: 1,
     recipeName: 'instant noodles',
     recipeDescription: 'a staple food among young people everywhere',
-    recipeImage: '???',
+    recipeImage: 'instantNoodles.png',
     recipeDuration: 5,
     ingredients: [
       {

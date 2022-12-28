@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState} from 'react';
 import {Text, View, Pressable, StyleSheet} from 'react-native';
 import {Recipe} from '../types';
 import {useAppContext} from '../App.provider';

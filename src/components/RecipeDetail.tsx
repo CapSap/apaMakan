@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {FlatList, Text, View} from 'react-native';
 import {DetailProps} from '../types';
 
 export const RecipeDetail = ({route}: DetailProps) => {

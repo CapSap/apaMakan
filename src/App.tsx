@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -11,26 +10,10 @@
 
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
-
-import {createStackNavigator} from '@react-navigation/stack';
-
-import React, {type PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {HomeScreen} from './components/HomeScreen';
-import {RecipeScreen} from './components/RecipeScreen';
-import {BottomTabsNavigator} from './components/BottomTabs.navigator';
-import {dummyData} from './dummyData';
-import {Recipe} from './types';
+import React from 'react';
+import {StyleSheet} from 'react-native';
 import {AppProvider} from './App.provider';
+import {BottomTabsNavigator} from './components/BottomTabs.navigator';
 
 const App = () => {
   return (

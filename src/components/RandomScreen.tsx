@@ -3,7 +3,7 @@ import {Text, View, ScrollView, Button} from 'react-native';
 import {Recipe} from '../types';
 import {useAppContext} from '../App.provider';
 
-export const RecipeScreen = () => {
+export const RandomScreen = () => {
   const recipeData: Recipe[] = useAppContext().appState;
   return (
     <View>
